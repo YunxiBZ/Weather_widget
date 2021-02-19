@@ -1,6 +1,6 @@
 
 import CityWeather from '../CityWeather';
-import './App.css';
+import './style.scss';
 
 function App() {
   const listCity = [
