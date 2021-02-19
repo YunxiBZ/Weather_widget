@@ -13,7 +13,7 @@ function App() {
       code: 69000,
     },
     {
-      name: "Marseilles",
+      name: "Marseille",
       code: 13000,
     },
     {

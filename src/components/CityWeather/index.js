@@ -6,13 +6,18 @@ import './style.scss';
 const CityWeather = ({cityName, cityCode}) => {
   // Hooks `useState` serve create state and a exclusive function for update state
   const [temperature, setTemperature] = useState(25);
-  
-
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+  const apiKey = process.env.REACT_APP_API_KEY;
   const fetchTemperature = ()=>{
-    // URL of local API for develop environement
-    const local_URL = `http://localhost:1234/data/2.5/weather?q=${cityCode}`;
     
-    axios.get(local_URL)
+    let URL = `${baseUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
+    
+    if(process.env.NODE_ENV==="development") {
+    // local API for develop environement
+    URL = `http://localhost:1234/data/2.5/weather?q=${cityCode}`;
+    }
+    
+    axios.get(URL)
     .then(
       (res) => {setTemperature(res.data.main.temp)}
     )
@@ -22,7 +27,7 @@ const CityWeather = ({cityName, cityCode}) => {
   }
 
   // Hooks useEffect execute function fetcheTemperature when the component finish download
-  useEffect(fetchTemperature,[]);
+  useEffect(fetchTemperature,[cityName]);
 
   return(
     <div className="weather">
