@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import './style.scss';
 
 const CityWeather = ({cityName, cityCode}) => {
-  // Hooks useState 
+  // Hooks `useState` serve create state and a exclusive function for update state
   const [temperature, setTemperature] = useState(25);
   
 
@@ -20,14 +21,14 @@ const CityWeather = ({cityName, cityCode}) => {
     )
   }
 
-  // Hooks useEffect
+  // Hooks useEffect execute function fetcheTemperature when the component finish download
   useEffect(fetchTemperature,[]);
 
   return(
-    <div className="weather-city">
-      <h3>{cityName}</h3>
-      <p>{cityCode}</p>
-      <h3>{Math.round(temperature)}</h3>
+    <div className="weather">
+      <h3 className="weather__city">{cityName}</h3>
+      <p className="weather__code">{cityCode}</p>
+      <h3 className="weather__temp">{Math.round(temperature)}</h3>
     </div>
 )};
 
